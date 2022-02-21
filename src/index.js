@@ -102,7 +102,8 @@ const Tridi = forwardRef(
 			maxZoom,
 			minZoom,
 			hideRecord,
-			onLoadChange
+			onLoadChange,
+			imageAltText
 		},
 		ref
 	) => {
@@ -530,7 +531,8 @@ const Tridi = forwardRef(
 							? styles['tridi-viewer-image-shown']
 							: styles['tridi-viewer-image-hidden']
 					}`}
-					alt=""
+					alt={imageAltText}
+					loading={lazyLoad ? 'lazy': ''}
 				/>
 			));
 
@@ -700,6 +702,7 @@ Tridi.propTypes = {
 	className: PropTypes.string,
 	style: PropTypes.object,
 	images: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+	imageAltText: PropTypes.string,
 	pins: PropTypes.array,
 	pinWidth: PropTypes.number,
 	pinHeight: PropTypes.number,
@@ -723,6 +726,7 @@ Tridi.propTypes = {
 	showControlBar: PropTypes.bool,
 	showStatusBar: PropTypes.bool,
 	hideRecord: PropTypes.bool,
+	lazyLoad: PropTypes.bool,
 
 	renderPin: PropTypes.func,
 	setPins: PropTypes.func,
